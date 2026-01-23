@@ -669,7 +669,7 @@ void PrintObject::infill()
     const PrintObjectRegions::LayerRangeRegions layer_range = m_shared_regions->layer_ranges.front();
     auto                                        it          = layer_range.volume_regions.begin();
     temp_region_config                                      = it->region->config();
-    if (m_config.overhang_optimization.value) {
+    if (m_config.overhang_layer_height_optimization.value) {
         temp_region_config = it->region->config();       
         PrintRegionConfig new_config            = temp_region_config;
         new_config.bottom_shell_thickness.value = BOTTOM_SHELL_THICKNESS;
@@ -704,7 +704,7 @@ void PrintObject::infill()
     }
 
     // Reset the region config after infill
-    if (m_config.overhang_optimization.value) {
+    if (m_config.overhang_layer_height_optimization.value) {
         const PrintObjectRegions::LayerRangeRegions layer_range = m_shared_regions->layer_ranges.front();
         auto                                        it          = layer_range.volume_regions.begin();
         it->region->set_config(temp_region_config);

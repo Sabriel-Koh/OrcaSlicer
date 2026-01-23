@@ -350,28 +350,6 @@ void GLCanvas3D::LayersEditing::render_variable_layer_height_dialog(const GLCanv
 
     ImGui::Separator();
 
-    // add the overhang-optimization related logic
-    bool overhang_optimization_check_state = false;
-    auto object_tab = dynamic_cast<TabPrintModel*>(wxGetApp().get_model_tab());
-    auto object_cfg = object_tab->get_config();
-    overhang_optimization_check_state = object_cfg->opt_bool("overhang_optimization");
-
-    ImGui::SameLine();
-    ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 20);
-    if (imgui.bbl_checkbox("##overhang_optimization", overhang_optimization_check_state)) {
-
-        PageShp quality_page = object_tab->get_page(L("Quality"));
-        if (quality_page) {
-            quality_page->set_value("overhang_optimization", overhang_optimization_check_state);
-            ConfigOptionsGroupShp optgroup = quality_page->get_optgroup(L("Overhangs"));
-            if (optgroup) {
-                optgroup->on_change_OG("overhang_optimization", overhang_optimization_check_state);
-            }
-        }
-    }
-    ImGui::SameLine();
-    imgui.text(_L("Enable Overhang Optimization"));
-
     float get_cur_y = ImGui::GetContentRegionMax().y + ImGui::GetFrameHeight() + canvas.m_main_toolbar.get_height();
     std::map<wxString, wxString> captions_texts = {
         {_L("Left mouse button") + ":" , _L("Add detail")},

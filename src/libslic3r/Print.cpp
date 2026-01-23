@@ -1319,9 +1319,9 @@ StringObjectException Print::validate(StringObjectException *warning, Polygons* 
         }
 
         if (print_object.has_support_material() && is_tree(print_object.config().support_type.value)
-            && (print_object.config().support_style.value == smsTreeOrganic) && print_object.config().overhang_optimization.value) {
+            && (print_object.config().support_style.value == smsTreeOrganic) && print_object.config().overhang_layer_height_optimization.value) {
             if (const std::vector<coordf_t>& layers = layer_height_profile(print_object_idx); !layers.empty())
-                return {_u8L("Overhang Optimization is not supported with Organic supports.")};
+                return {_u8L("Overhang Layer Height Optimization is not supported with Organic supports.")};
         }
     }
 

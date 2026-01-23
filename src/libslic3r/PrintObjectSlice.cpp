@@ -806,7 +806,7 @@ void PrintObject::slice()
         out_wall_width = 0.42 * out_wall_width / 100.f;
 
 
-    if (m_config.overhang_optimization.value) {
+    if (m_config.overhang_layer_height_optimization.value) {
         this->update_layer_height_profile(*this->model_object(), m_slicing_params, layer_height_profile);
         layer_height_profile = layer_height_overhang(m_slicing_params, *this->model_object(), m_slicing_params.layer_height,
                                                     layer_height_profile, trafo);
@@ -814,7 +814,7 @@ void PrintObject::slice()
 
     this->update_layer_height_profile(*this->model_object(), m_slicing_params, layer_height_profile);
     
-    if (m_config.overhang_optimization.value) {
+    if (m_config.overhang_outer_wall_optimization.value) {
         layer_width_profile = layer_width_profile_adaptive(m_slicing_params, *this->model_object(), layer_height_profile,
                                                            out_wall_width, trafo);      
     }

@@ -1853,9 +1853,16 @@ void Tab::on_value_change(const std::string& opt_key, const boost::any& value)
         }
     }
 
-    if (opt_key == "overhang_optimization") {
+    if (opt_key == "overhang_outer_wall_optimization") {
         DynamicPrintConfig new_conf = *m_config;
-        new_conf.set_key_value("overhang_optimization", new ConfigOptionBool(m_config->opt_bool("overhang_optimization")));
+        new_conf.set_key_value("overhang_outer_wall_optimization", new ConfigOptionBool(m_config->opt_bool("overhang_outer_wall_optimization")));
+        m_config_manipulation.apply(m_config, &new_conf);
+        wxGetApp().plater()->update();
+    }
+
+    if (opt_key == "overhang_layer_height_optimization") {
+        DynamicPrintConfig new_conf = *m_config;
+        new_conf.set_key_value("overhang_layer_height_optimization", new ConfigOptionBool(m_config->opt_bool("overhang_layer_height_optimization")));
         m_config_manipulation.apply(m_config, &new_conf);
         wxGetApp().plater()->update();
     }
@@ -2426,8 +2433,8 @@ void TabPrint::build()
         optgroup->append_single_option_line("overhang_reverse", "quality_settings_overhangs#reverse-on-even");
         optgroup->append_single_option_line("overhang_reverse_internal_only", "quality_settings_overhangs#reverse-internal-only");
         optgroup->append_single_option_line("overhang_reverse_threshold", "quality_settings_overhangs#reverse-threshold");
-        //yy
-        optgroup->append_single_option_line("overhang_optimization");
+        optgroup->append_single_option_line("overhang_outer_wall_optimization");
+        optgroup->append_single_option_line("overhang_layer_height_optimization");
 
     page = add_options_page(L("Strength"), "custom-gcode_strength"); // ORCA: icon only visible on placeholders
         optgroup = page->new_optgroup(L("Walls"), L"param_wall");

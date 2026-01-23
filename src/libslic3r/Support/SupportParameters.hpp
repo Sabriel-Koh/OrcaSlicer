@@ -180,7 +180,7 @@ struct SupportParameters {
         if (support_style == smsDefault) {
             if (is_tree(object_config.support_type)) {
                 // organic support doesn't work with variable layer heights (including adaptive layer height and height range modifier, see #4313)
-                if (!object.has_variable_layer_heights && !object_config.overhang_optimization.getBool() && !slicing_params.soluble_interface)
+                if (!object.has_variable_layer_heights && !object_config.overhang_layer_height_optimization.getBool() && !slicing_params.soluble_interface)
                 {
                     BOOST_LOG_TRIVIAL(warning) << "tree support default to organic support";
                     support_style = smsTreeOrganic;

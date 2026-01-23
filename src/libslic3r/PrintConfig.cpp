@@ -4513,11 +4513,17 @@ void PrintConfigDef::init_fff_params()
     def->mode = comAdvanced;
     def->set_default_value(new ConfigOptionBool(true));
 
-    //yy
-    def = this->add("overhang_optimization", coBool);
-    def->label = L("Overhang Optimization(Beta)");
+    def = this->add("overhang_outer_wall_optimization", coBool);
+    def->label = L("Overhang Outer Wall Optimization(Beta)");
     def->category = L("Quality");
-    def->tooltip = L("Adaptive height and line width for each layer. ");
+    def->tooltip = L("Adaptive outer wall line width for overhangs. ");
+    def->mode = comAdvanced;
+    def->set_default_value(new ConfigOptionBool(false));
+    
+    def = this->add("overhang_layer_height_optimization", coBool);
+    def->label = L("Overhang Layer Height Optimization(Beta)");
+    def->category = L("Quality");
+    def->tooltip = L("Adaptive layer height for overhangs. ");
     def->mode = comAdvanced;
     def->set_default_value(new ConfigOptionBool(false));
 
