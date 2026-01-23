@@ -999,6 +999,9 @@ PRINT_CONFIG_CLASS_DEFINE(
     ((ConfigOptionEnum<GapFillTarget>,gap_fill_target))
     ((ConfigOptionFloat,              min_length_factor))
 
+    //yy
+    ((ConfigOptionBool, overhang_optimization))
+
     // Move all acceleration and jerk settings to object
     ((ConfigOptionFloat,              default_acceleration))
     ((ConfigOptionFloat,              outer_wall_acceleration))

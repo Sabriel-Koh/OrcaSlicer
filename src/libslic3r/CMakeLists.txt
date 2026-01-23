@@ -319,6 +319,8 @@ set(lisbslic3r_sources
     Optimize/Optimizer.hpp
     Orient.cpp
     Orient.hpp
+    OverhangOptimization.cpp
+    OverhangOptimization.hpp
     ParameterUtils.cpp
     ParameterUtils.hpp
     pchheader.cpp

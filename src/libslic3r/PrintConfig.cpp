@@ -4513,6 +4513,14 @@ void PrintConfigDef::init_fff_params()
     def->mode = comAdvanced;
     def->set_default_value(new ConfigOptionBool(true));
 
+    //yy
+    def = this->add("overhang_optimization", coBool);
+    def->label = L("Overhang Optimization(Beta)");
+    def->category = L("Quality");
+    def->tooltip = L("Adaptive height and line width for each layer. ");
+    def->mode = comAdvanced;
+    def->set_default_value(new ConfigOptionBool(false));
+
     def = this->add("wall_filament", coInt);
     def->gui_type = ConfigOptionDef::GUIType::i_enum_open;
     def->label = L("Walls");
