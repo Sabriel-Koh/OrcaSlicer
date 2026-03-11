@@ -439,7 +439,6 @@ void GCodeViewer::SequentialView::Marker::render_position_window(const libvgcode
                 //ImGui::Separator();
                 //const int hover_id = m_actual_speed_imgui_widget.plot("##ActualSpeedProfile", { -1.0f, 150.0f });
                 if (actual_speed_exist && table_shown) {
-                    static float table_wnd_height = 0.0f;
                     //const ImVec2 wnd_size = ImGui::GetWindowSize();
                     imgui.set_next_window_pos(ImGui::GetWindowPos().x - 5.f * m_scale /*+ wnd_size.x*/, static_cast<float>(canvas_height), ImGuiCond_Always, 1.0f, 1.0f);
                     //ImGui::SetNextWindowSizeConstraints({ 0.0f, 0.0f }, { -1.0f, wnd_size.y });
@@ -483,12 +482,8 @@ void GCodeViewer::SequentialView::Marker::render_position_window(const libvgcode
                     }
                     ImGui::PopStyleVar(2);
                     ImGui::PopStyleColor(1);
-                    const float curr_table_wnd_height = ImGui::GetWindowHeight();
-                    if (table_wnd_height != curr_table_wnd_height) {
-                        table_wnd_height = curr_table_wnd_height;
-                        // require extra frame to hide the table scroll bar (bug in imgui)
-                        imgui.set_requires_extra_frame();
-                    }
+                    // require extra frame to hide the table scroll bar (bug in imgui) and force the window to resize for table rows
+                    imgui.set_requires_extra_frame();
                     imgui.end();
                 }
 
